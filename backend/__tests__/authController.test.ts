@@ -76,20 +76,58 @@ describe('Unit test register controller', () =>{
     })
 })
 
-// describe('Unit test login controller', () => {
-//     afterEach(() => jest.clearAllMocks())
+describe('Unit test login controller', () => {
+    const payload = {username: 'username', password: 'password'}
+    afterEach(() => jest.clearAllMocks())
 
-//     it('should authenticate user credentials',async () => {
-//         User.findOne = jest.fn().mockResolvedValue({
-//             username: 'username',
-//             password: 'password'
-//         })
-//         bcrypt.compare = jest.fn().mockResolvedValue(true)
+    it('should authenticate user credentials',async () => {
+        User.findOne = jest.fn().mockResolvedValue({
+            username: 'username',
+            password: 'password',
+            role: 'member'
+        })
+        bcrypt.compare = jest.fn().mockResolvedValue(true)
 
-//         const response = await request(server)
-//         .post('/login')
-//         .send({username: 'username', password: 'password'})
+        const response = await request(server)
+        .post('/login')
+        .send(payload)
 
-//         expect(response.status).toBe(200)
-//     })
-// })
+        expect(response.status).toBe(200)
+        expect(response.text).toBe('member')
+        console.log(response.headers)
+        expect(response.headers['set-cookie']).toBeDefined()
+    })
+
+    it('should handle bad request properly', async () => {
+        const response = await request(server)
+        .post('/login')
+
+        expect(response.status).toBe(400)
+        expect(response.text).toBe('Username and password are required')
+    })
+
+    it('should handle invalid credentials properly',async () => {
+        User.findOne = jest.fn().mockResolvedValue(null)
+        bcrypt.compare = jest.fn().mockResolvedValue(true)
+
+        const response = await request(server)
+        .post('/login')
+        .send(payload)
+
+        expect(response.status).toBe(409)
+        expect(response.text).toBe('Invalid username or password')
+    })
+
+    it('should handle internal error properly', async () => {
+        User.findOne = jest.fn().mockImplementationOnce(() => {
+            throw new Error('MongoDB error')
+        })
+
+        const response = await request(server)
+        .post('/login')
+        .send(payload)
+
+        expect(response.status).toBe(500)
+        expect(response.text).toBe('Internal server error')
+    })
+})

@@ -7,7 +7,7 @@
     "start": "node dist/index",
     "dev": "nodemon index.ts",
     "build": "tsc -p .",
-    "test": "cls && set PORT=0 && jest --watchAll --verbose --coverage --collectCoverageFrom=controllers/**"
+    "test": "cls && set PORT=0 && jest --watchAll  --coverage"
 
   },
   "dependencies": {
