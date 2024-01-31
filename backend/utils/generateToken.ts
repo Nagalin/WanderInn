@@ -11,7 +11,7 @@ const generateToken = (
     const REFRESH_TOKEN_KEY = process.env.REFRESH_TOKEN_KEY
 
     if (!ACCESS_TOKEN_KEY || !REFRESH_TOKEN_KEY) {
-        throw new Error('Access token key and refresh token are required in env file')
+        throw new Error('Access token key and refresh token key are required in env file')
     }
     const expirationTime = tokenType === 'ACCESS' ? '5s' : '1d';
     const secretKey = tokenType === 'ACCESS' ? ACCESS_TOKEN_KEY : REFRESH_TOKEN_KEY;

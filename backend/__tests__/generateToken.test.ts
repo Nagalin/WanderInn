@@ -37,6 +37,6 @@ describe('Unit test generateToken function', () => {
     delete process.env.REFRESH_TOKEN_KEY;
 
     expect(() => generateToken(userId, 'ACCESS'))
-    .toThrow('Access token key and refresh token are required in env file');
+    .toThrow('Access token key and refresh token key are required in env file');
   });
 });

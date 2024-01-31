@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Form, Button, Col } from "react-bootstrap";
+import { Form, Button, Col, Modal } from "react-bootstrap";
 
 const containerStyle = {
-  height: "540px",
-  width: "400px",
   backgroundColor: "#ffffff",
   backgroundOpacity: "0.13",
   borderRadius: "10px",
@@ -43,8 +41,8 @@ const errorStyle = {
 
 export default function Loginform() {
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg">
-      <Form style={containerStyle}>
+    <Modal.Body style={containerStyle}>
+      <Form >
         <div className="d-flex align-items-center mb-5">
           <Form.Label className="h1 mb-0">Sign-in</Form.Label>
         </div>
@@ -87,6 +85,6 @@ export default function Loginform() {
           </center>
         </Form.Group>
       </Form>
-    </div>
+    </Modal.Body>
   );
 }
