@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Col, Modal } from "react-bootstrap";
+import { Form, Button, Col, Modal, ModalHeader } from "react-bootstrap";
 
 const containerStyle = {
   backgroundColor: "#ffffff",
@@ -41,7 +41,7 @@ const errorStyle = {
 
 export default function Loginform() {
   return (
-    <Modal.Body style={containerStyle}>
+    <Modal.Body style={containerStyle} >
       <Form >
         <div className="d-flex align-items-center mb-5">
           <Form.Label className="h1 mb-0">Sign-in</Form.Label>

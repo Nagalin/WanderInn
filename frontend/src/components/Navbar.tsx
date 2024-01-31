@@ -5,12 +5,17 @@ import Usg from "../assets/user.png";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
 import Loginform from "../features/login/components/Loginform";
+import Signupform from "../features/signup/Signupform";
+import { Outlet } from "react-router-dom";
 
 function Navbar() {
-  const [show, setShow] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+  const handleCloseSignIn = () => setShowSignIn(false);
+  const handleCloseSignUp = () => setShowSignUp(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShowSignIn = () => setShowSignIn(true);
+  const handleShowSignUp = () => setShowSignUp(true);
   return (
     <>
     <NavbarBs
@@ -52,14 +57,20 @@ function Navbar() {
             />
         </NavbarBs.Brand>
         <h2>Guest555</h2>
-        <Nav.Link onClick={handleShow}><Button variant="light">Sign-in</Button></Nav.Link>
-        <Nav.Link href="#home"><Button variant="light">Sign-up</Button></Nav.Link>
+        <Nav.Link onClick={handleShowSignIn}><Button variant="light">Sign-in</Button></Nav.Link>
+        <Nav.Link onClick={handleShowSignUp}><Button variant="light">Sign-up</Button></Nav.Link>
       </div>
     </NavbarBs>
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={showSignIn} onHide={handleCloseSignIn}>
       <Loginform/>
 
     </Modal>
+    <Modal show={showSignUp} onHide={handleCloseSignUp}>
+      <Signupform/>
+      
+    </Modal>
+    <Outlet/> 
+    {/* children */}
     </>
   );
 }
