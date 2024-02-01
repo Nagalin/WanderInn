@@ -16,6 +16,7 @@ function Navbar() {
 
   const handleShowSignIn = () => setShowSignIn(true);
   const handleShowSignUp = () => setShowSignUp(true);
+
   return (
     <>
     <NavbarBs
@@ -26,7 +27,7 @@ function Navbar() {
       <div className="d-flex align-items-center ms-4">
         <NavbarBs.Brand href="/Homepage">
           <img
-            style={{ height: "60px", width: "60px", objectFit: "cover" }}
+            style={{ height: "60px", width: "60px", objectFit: "cover"}}
             alt="Logo"
             src={Logo}
             />
