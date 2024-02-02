@@ -1,6 +1,6 @@
 // rafce create fast component
-import React, { useState } from "react";
-import { Button, Image, Modal, Ratio, Spinner } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Fade, Image, Modal, Ratio, Spinner } from "react-bootstrap";
 import homeBg from "../assets/homeBg.jpg";
 import Carousel from "react-bootstrap/Carousel";
 import greenScreen from "../assets/green.png";
@@ -16,6 +16,12 @@ const Homepage = () => {
   const handleShowSignIn = () => setShowSignIn(true);
   const handleShowSignUp = () => setShowSignUp(true);
 
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setOpen(true),500) 
+    
+  },[])
   return (
     <>
       <center>
@@ -30,7 +36,8 @@ const Homepage = () => {
           }}
         >
           <div className="insideBg">
-            <h1 className="text-white">WanderInn</h1>
+             <Fade in={open}>
+            <h1 className="text-white">WanderInn</h1></Fade>
             <h2 className="text-white">เริ่มต้นการท่องเที่ยวของคุณได้ที่นี่</h2>
             <Button variant="info" onClick={handleShowSignIn}>เข้าสู่ระบบ</Button>{' '}
               <p onClick={handleShowSignUp}
