@@ -1,11 +1,21 @@
 // rafce create fast component
-import React from "react";
-import { Button, Image, Ratio, Spinner } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Image, Modal, Ratio, Spinner } from "react-bootstrap";
 import homeBg from "../assets/homeBg.jpg";
 import Carousel from "react-bootstrap/Carousel";
 import greenScreen from "../assets/green.png";
-
+import Loginform from "../features/login/components/Loginform";
+import Signupform from "../features/signup/Signupform";
+ 
 const Homepage = () => {
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+  const handleCloseSignIn = () => setShowSignIn(false);
+  const handleCloseSignUp = () => setShowSignUp(false);
+
+  const handleShowSignIn = () => setShowSignIn(true);
+  const handleShowSignUp = () => setShowSignUp(true);
+
   return (
     <>
       <center>
@@ -22,10 +32,10 @@ const Homepage = () => {
           <div className="insideBg">
             <h1 className="text-white">WanderInn</h1>
             <h2 className="text-white">เริ่มต้นการท่องเที่ยวของคุณได้ที่นี่</h2>
-            <Button variant="info">เข้าสู่ระบบ</Button>{' '}
-            <a href="">
-              <p
+            <Button variant="info" onClick={handleShowSignIn}>เข้าสู่ระบบ</Button>{' '}
+              <p onClick={handleShowSignUp}
                 style={{
+                  color:"skyblue",
                   marginTop: "15px",
                   textDecoration: "none",
                   cursor: "underline",
@@ -33,7 +43,7 @@ const Homepage = () => {
               >
                 ยังไม่มีบัญชี? สมัครสมาชิกที่นี่
               </p>
-            </a>
+
           </div>
         </div>
 
@@ -156,6 +166,14 @@ const Homepage = () => {
           </div>
         </div>
       </center>
+      <Modal show={showSignIn} onHide={handleCloseSignIn}>
+      <Loginform/>
+
+    </Modal>
+    <Modal show={showSignUp} onHide={handleCloseSignUp}>
+      <Signupform/>
+      
+    </Modal>
     </>
   );
 };

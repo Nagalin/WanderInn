@@ -1,10 +1,9 @@
 // rafce create fast component
 import React from 'react'
 import Navbar from '../components/Navbar'
-const Homepage = () => {
+const Booking = () => {
   return (
     <>
-    <Navbar/>
     <center>
     <h1>ssssssssssssssssssssss</h1>
     <button>cleck me</button>
@@ -13,4 +12,4 @@ const Homepage = () => {
   )
 }
 
-export default Homepage
+export default Booking

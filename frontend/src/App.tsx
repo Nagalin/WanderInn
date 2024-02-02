@@ -4,6 +4,7 @@ import Homepage from "./pages/Homepage";
 // import Loginform from './feature/login/components/Loginform'
 import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
+import Booking from "./pages/Booking";
 const App = () => {
   return (
     <>
@@ -12,6 +13,7 @@ const App = () => {
         {/* <Route element={<Protected/>}> */}
         <Route element={<Navbar />}>
           <Route path="/homepage" element={<Homepage />} />
+          <Route path="/booking" element={<Booking />} />
         </Route>
       </Routes>
     </>
