@@ -91,7 +91,7 @@ export default function Signupform() {
             type="tel"
             placeholder="Phone Number"
             required
-            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+            pattern="[0-9]{3}[0-9]{2}[0-9]{5}"
           />
         </Form.Group>
 

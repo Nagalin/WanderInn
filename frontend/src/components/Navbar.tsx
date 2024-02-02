@@ -33,10 +33,10 @@ function Navbar() {
             />
           </NavbarBs.Brand>
           <Nav>
-            <Nav.Link to="/booking" as={NavLink}>
+            <Nav.Link href="/booking" >
               จองห้อง
             </Nav.Link>
-            <Nav.Link to="/trackingBooking" as={NavLink}>
+            <Nav.Link  href="/trackingBooking">
               ติดตามการจอง
             </Nav.Link>
           </Nav>
