@@ -1,8 +1,7 @@
 import express from 'express'
-import userRoute from './user'
+import auth from './auth'
 const router = express.Router()
 
-router.get('/',(req,res)=>res.send('<h1>hello world</h1>').end())
-router.use(userRoute)
+router.use(auth)
 
 export default router
