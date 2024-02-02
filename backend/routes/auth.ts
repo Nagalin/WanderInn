@@ -1,75 +1,30 @@
 /**
-* @swagger
-* /login:
-*   post:
-*     summary: Authenticate user credentials
-*     description: Authenticate user credentials and create access token, refresh token with valid credentials
-*     requestBody:
-*       required: true
-*       content:
-*         application/json:
-*           schema:
-*             type: object
-*             properties:
-*               username:
-*                 type: string
-*                 description: The user's username.
-*                 example: user123
-*               password:
-*                 type: string
-*                 description: The user's password.
-*                 example: password123
-*     responses:
-*       200:
-*         description: Authentication successful. Access and refresh tokens are sent via cookies.
-*         headers:
-*           Set-Cookie:
-*             description: Set the access and refresh tokens as cookies.
-*             schema:
-*               type: array
-*               items:
-*                 type: string
-*             examples:
-*               access_token:
-*                 value: "access_token=my_access_token; Path=/; HttpOnly"
-*               refresh_token:
-*                 value: "refresh_token=my_refresh_token; Path=/; HttpOnly"
-*         content:
-*           application/json:
-*             schema:
-*               type: object
-*               properties:
-*                     accessToken:
-*                       type: string
-*                       description: access token for user
-*                       example: my_access_token
-*                     refreshToken:
-*                       type: string
-*                       description: access token for user
-*                       example: my_refresh_token
-*                          
-*                     
-*       401:
-*         description: Invalid user credentials.
-*         content:
-*           application/json:
-*             schema:
-*               type: object
-*               properties:
-*                     data:
-*                       type: string
-*                       example: Invalid username or password
-*       500:
-*         description: Internal server error.
-*         content:
-*           application/json:
-*             schema:
-*               type: object
-*               properties:
-*                 data:
-*                   type: string
-*                   example: Internal server error
-*/
+ * @swagger
+ * /admin/product:
+ *   put:
+ *     summary: Add a new product if it not already exists
+ *     description: Endpoint to add a new product with image.
+ *     requestBody:
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               image:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       '201':
+ *         description: Product added successfully
+ *       '409':
+ *         description: Product already exists in the store
+ *       '500':
+ *         description: Internal server error, please try again later
+ */
 
 /**
  * @swagger
@@ -145,7 +100,6 @@
  *                   type: string
  *                   example: Internal server error
  */
-
 
 import express from 'express'
 import { login, register } from '../controllers/authController'
