@@ -3,9 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Button, Fade, Image, Modal, Ratio, Spinner } from "react-bootstrap";
 import homeBg from "../assets/homeBg.jpg";
 import Carousel from "react-bootstrap/Carousel";
+import hotel1 from "../assets/hotel1.png";
+import hotel2 from "../assets/hotel2.png";
+import hotel3 from "../assets/hotel3.png";
 import greenScreen from "../assets/green.png";
-import Loginform from "../features/login/components/Loginform";
-import Signupform from "../features/signup/Signupform";
+import Loginform from "../features/login/components/components/Loginform";
+import Signupform from "../features/signup/components/Signupform";
 const Homepage = () => {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -38,30 +41,16 @@ const Homepage = () => {
              <Fade in={open}>
             <h1 className="text-white">WanderInn</h1></Fade>
             <h2 className="text-white">Begin your jorney</h2>
-            <Button variant="info" onClick={handleShowSignIn}>เข้าสู่ระบบ</Button>{' '}
-              <p onClick={handleShowSignUp}
-                style={{
-                  color:"skyblue",
-                  marginTop: "15px",
-                  textDecoration: "none",
-                  cursor: "underline",
-                  textDecorationLine: 'underline'
-                  
-                }}
-              >
-                ยังไม่มีบัญชี? สมัครสมาชิกที่นี่
-              </p>
-
           </div>
         </div>
 
         <div className="mid-content">
-          <h1 className="mb-7">พบกับโรงแรมมากมาย</h1>
+          <h1 className="mb-7">Discover our Hotels</h1>
           <Carousel data-bs-theme="dark">
             <Carousel.Item>
               <img
                 className="d-block w-50"
-                src={greenScreen}
+                src={hotel1}
                 alt="First slide"
               />
               <Carousel.Caption>
@@ -74,7 +63,7 @@ const Homepage = () => {
             <Carousel.Item>
               <img
                 className="d-block w-50"
-                src={greenScreen}
+                src={hotel2}
                 alt="First slide"
               />
               <Carousel.Caption>
@@ -85,7 +74,7 @@ const Homepage = () => {
             <Carousel.Item>
               <img
                 className="d-block w-50"
-                src={greenScreen}
+                src={hotel3}
                 alt="First slide"
               />
               <Carousel.Caption>
@@ -175,12 +164,11 @@ const Homepage = () => {
         </div>
       </center>
       <Modal show={showSignIn} onHide={handleCloseSignIn}>
-      <Loginform/>
+      {/* <Loginform/> */}
 
     </Modal>
     <Modal show={showSignUp} onHide={handleCloseSignUp}>
-      <Signupform/>
-      
+      {/* <Signupform/> */}
     </Modal>
     </>
   );

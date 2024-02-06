@@ -4,8 +4,8 @@ import ThIcon from "../assets/th.jpg";
 import Usg from "../assets/user.png";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
-import Loginform from "../features/login/components/Loginform";
-import Signupform from "../features/signup/Signupform";
+import Loginform from "../features/login/components/components/Loginform";
+import Signupform from "../features/signup/components/Signupform";
 import { Outlet } from "react-router-dom";
 
 function Navbar() {
@@ -34,10 +34,10 @@ function Navbar() {
           </NavbarBs.Brand>
           <Nav>
             <Nav.Link href="/booking" >
-              จองห้อง
+              Booking
             </Nav.Link>
             <Nav.Link  href="/trackingBooking">
-              ติดตามการจอง
+            Track your booking
             </Nav.Link>
           </Nav>
         </div>
@@ -74,12 +74,9 @@ function Navbar() {
           </Nav.Link>
         </div>
       </NavbarBs>
-      <Modal show={showSignIn} onHide={handleCloseSignIn}>
-        <Loginform />
-      </Modal>
-      <Modal show={showSignUp} onHide={handleCloseSignUp}>
-        <Signupform />
-      </Modal>
+      
+        <Loginform handleShowSignUp={handleShowSignUp} showSignIn={showSignIn} handleCloseSignIn={handleCloseSignIn} />
+        <Signupform handleShowSignUp={handleShowSignUp} handleCloseSignUp={handleCloseSignUp} showSignUp={showSignUp}  handleShowSignIn={handleShowSignIn}/>
       <Outlet />
       {/* children */}
     </>

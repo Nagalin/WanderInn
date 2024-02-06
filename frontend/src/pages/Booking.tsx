@@ -1,92 +1,56 @@
 // rafce create fast component
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import {
-  Button,
-  Col,
-  Container,
-  FloatingLabel,
-  Form,
-  Row,
-} from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import SearchBar from "../features/booking/components/SearchBar";
+import SearchResult from "../features/booking/components/SearchResult";
+import Carousel from 'react-bootstrap/Carousel';
+import greenScreen from '../assets/green.png'
 const Booking = () => {
-  const DateStyle = {
-    display: "block",
-    height: "50px",
-    width: "100%",
-    backgroundColor: "#ffffff",
-    backgroundOpacity: "0.07",
-    borderRadius: "3px",
-    padding: "0px",
-    marginTop: "0px",
-    marginBottom: "0px",
-  };
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [outDate, setOutDate] = useState<Date | null>(null);
-
   return (
-    <Container className="mb-4">
+    <Container>
+      <SearchBar/>
+      <div className="mt-3">
       <center>
-        <h2>ค้นหาโรงแรม และ เริ่มจองห้อง</h2>
-        <FloatingLabel
-          controlId="floatingInput"
-          label="ตำแหน่งห้องพักและโรงแรมที่ต้องการ"
-          className="mb-3"
-        >
-          <Form.Control
-            type="email"
-            placeholder="ตำแหน่งห้องพักและโรงแรมที่ต้องการ"
-          />
-        </FloatingLabel>
-      </center>
-      <Row>
-        <Col>
-          <FloatingLabel
-            controlId="floatingTextarea"
-            label="กรุณาเลือกวัน Check-In"
-            className="mb-3"
-          >
-            <Form.Control type="date" />
-          </FloatingLabel>
-        </Col>
-
-        <Col>
-          <FloatingLabel
-            controlId="floatingTextarea"
-            label="กรุณาเลือกวัน Check-Out"
-            className="mb-3"
-          >
-            <Form.Control type="date" />
-          </FloatingLabel>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          {" "}
-          <FloatingLabel
-            controlId="floatingInput"
-            label="จำนวนผู้เข้าพัก"
-            className="mt-3"
-            style={{zIndex: "0" }}
-          >
-            <Form.Control
-              type="email"
-              placeholder="ตำแหน่งห้องพักและโรงแรมที่ต้องการ"
-            />
-          </FloatingLabel>
-        </Col>
-        <Col>
-          {" "}
-          <Button
-            className="mt-3"
-            style={{ width: "100%", height: "80%",fontSize:"140%"}}
-            variant="primary"
-          >
-            ค้นหา
-          </Button>
-        </Col>
-      </Row>
+    <Carousel fade>
+      <Carousel.Item>
+      <img
+                style={{width:"1300px",height:"320px"}}
+                src={greenScreen}
+                alt="First slide"
+              />
+        <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+      <img
+                style={{width:"1300px",height:"350px"}}
+                src={greenScreen}
+                alt="First slide"
+              />
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+      <img
+                style={{width:"1300px",height:"350px"}}
+                src={greenScreen}
+                alt="First slide"
+              />
+        <Carousel.Caption>
+          <h3>Third slide label</h3>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+    </center>
+    </div>
     </Container>
   );
 };
