@@ -25,7 +25,7 @@ function Navbar() {
         data-bs-theme="dark"
       >
         <div className="d-flex align-items-center ms-4">
-          <NavbarBs.Brand href="/Homepage">
+          <NavbarBs.Brand href="/">
             <img
               style={{ height: "60px", width: "60px", objectFit: "cover" }}
               alt="Logo"

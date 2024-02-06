@@ -6,7 +6,6 @@ import Carousel from "react-bootstrap/Carousel";
 import greenScreen from "../assets/green.png";
 import Loginform from "../features/login/components/Loginform";
 import Signupform from "../features/signup/Signupform";
- 
 const Homepage = () => {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
@@ -19,7 +18,7 @@ const Homepage = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setOpen(true),500) 
+    setTimeout(() => setOpen(true),700) 
     
   },[])
   return (
@@ -38,7 +37,7 @@ const Homepage = () => {
           <div className="insideBg">
              <Fade in={open}>
             <h1 className="text-white">WanderInn</h1></Fade>
-            <h2 className="text-white">เริ่มต้นการท่องเที่ยวของคุณได้ที่นี่</h2>
+            <h2 className="text-white">Begin your jorney</h2>
             <Button variant="info" onClick={handleShowSignIn}>เข้าสู่ระบบ</Button>{' '}
               <p onClick={handleShowSignUp}
                 style={{
@@ -46,6 +45,8 @@ const Homepage = () => {
                   marginTop: "15px",
                   textDecoration: "none",
                   cursor: "underline",
+                  textDecorationLine: 'underline'
+                  
                 }}
               >
                 ยังไม่มีบัญชี? สมัครสมาชิกที่นี่

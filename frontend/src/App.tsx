@@ -13,9 +13,10 @@ const App = () => {
         {/* <Route path="/" element={<Login />} /> */}
         {/* <Route element={<Protected/>}> */}
         <Route element={<Navbar />}>
-          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/" element={<Homepage />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/trackingBooking" element={<TrackingBooking />} />
+          <Route path="*" element={<h1>404 not found</h1>}/>
         </Route>
       </Routes>
     </>
