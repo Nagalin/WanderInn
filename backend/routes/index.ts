@@ -1,7 +1,12 @@
 import express from 'express'
-import auth from './auth'
+import authRoute from './auth'
+import hotelRoute from './hotel'
+import isAuthenticated from '../middlewares/isAuthenticated'
 const router = express.Router()
 
-router.use(auth)
+router.use(authRoute)
+router.use(hotelRoute)
 
+router.use(isAuthenticated)
+router.get('/auth',(req,res) => res.status(200).end())
 export default router
