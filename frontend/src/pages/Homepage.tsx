@@ -7,7 +7,7 @@ import hotel1 from "../assets/hotel1.png";
 import hotel2 from "../assets/hotel2.png";
 import hotel3 from "../assets/hotel3.png";
 import greenScreen from "../assets/green.png";
-import Loginform from "../features/login/components/components/Loginform";
+import Loginform from "../features/login/components/Loginform";
 import Signupform from "../features/signup/components/Signupform";
 const Homepage = () => {
   const [showSignIn, setShowSignIn] = useState(false);

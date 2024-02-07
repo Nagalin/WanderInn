@@ -7,13 +7,15 @@ import swaggerUi from 'swagger-ui-express'
 import { option } from './configs/swagger'
 import { config } from 'dotenv'
 import bodyParser from 'body-parser'
+import cors from 'cors'
+import corsOption from './configs/cors'
 config()
 
 const app = express()
 const server = http.createServer(app)
 const PORT = process.env.PORT ?? 3000
 const specs = swaggerJsDoc(option)
-
+app.use(cors(corsOption))
 app.use("/api-docs",swaggerUi.serve,swaggerUi.setup(specs))
 app.use(bodyParser.json())
 app.use(router)

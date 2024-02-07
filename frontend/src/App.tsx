@@ -6,9 +6,10 @@ import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Booking from "./pages/Booking";
 import TrackingBooking from "./pages/TrackingBooking";
+import { ModalContextProvider } from "./contexts/ModalContext";
 const App = () => {
   return (
-    <>
+    <ModalContextProvider>
       <Routes>
         {/* <Route path="/" element={<Login />} /> */}
         {/* <Route element={<Protected/>}> */}
@@ -19,7 +20,7 @@ const App = () => {
         </Route>
         <Route path="*" element={<h1>404 not found</h1>}/>
       </Routes>
-    </>
+    </ModalContextProvider>
   );
 };
 

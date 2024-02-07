@@ -1,6 +1,16 @@
-import React, { useState } from "react";
-import { Form, Button, Col, Modal, Nav, Container, Row, Alert } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import {
+  Form,
+  Button,
+  Col,
+  Modal,
+  Nav,
+  Container,
+  Row,
+  Alert,
+} from "react-bootstrap";
 import useSignUp from "../hooks/useSignUp";
+import { useModalContext } from "../../../contexts/ModalContext";
 
 const containerStyle = {
   backgroundColor: "#ffffff",
@@ -53,18 +63,11 @@ const buttonStyle = {
 // };
 
 type LoginFormProps = {
-  handleShowSignUp: () => void;
-  handleCloseSignUp: () => void;
   showSignUp: boolean;
-  handleShowSignIn: () => void;
 };
 
-export default function Signupform({
-  handleShowSignUp,
-  handleCloseSignUp,
-  showSignUp,
-  handleShowSignIn,
-}: LoginFormProps) {
+export default function Signupform({ showSignUp }: LoginFormProps) {
+  const {handleCloseSignUp} = useModalContext();
   const {
     username,
     password,
@@ -75,7 +78,7 @@ export default function Signupform({
     phoneNum,
     confirmPassword,
     handleSignUp,
-    err
+    err,
   } = useSignUp();
   return (
     <Modal show={showSignUp} onHide={handleCloseSignUp}>
@@ -89,6 +92,7 @@ export default function Signupform({
             defaultValue=""
             className="mb-3"
             ref={role}
+            required
           >
             <option value="" disabled hidden>
               Select Role
@@ -170,21 +174,16 @@ export default function Signupform({
               required
               ref={confirmPassword}
             />
-          </Form.Group> 
-          
-          { err && 
-                <Alert variant="danger">
-                    <center>{err}</center>
-                </Alert>
-                }
+          </Form.Group>
+
+          {err && (
+            <Alert variant="danger">
+              <center>{err}</center>
+            </Alert>
+          )}
 
           <Form.Group>
-            <Button
-              variant="primary"
-              type="submit"
-              style={buttonStyle}
-             
-            >
+            <Button variant="primary" type="submit" style={buttonStyle}>
               Sign-Up
             </Button>
           </Form.Group>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Col, Modal, ModalHeader, Alert } from "react-bootstrap";
-import useLogin from "../../hooks/useLogin";
+import useLogin from "../hooks/useLogin";
+import { useModalContext } from "../../../contexts/ModalContext";
 const containerStyle = {
   backgroundColor: "#ffffff",
   backgroundOpacity: "0.13",
@@ -39,17 +40,14 @@ const buttonStyle = {
 //   marginTop: "10px",
 // };
 type LoginFormProps = {
-  handleShowSignUp: () => void;
   showSignIn: boolean;
-  handleCloseSignIn: () => void;
 };
 
 export default function LoginForm({
-  handleShowSignUp,
-  showSignIn,
-  handleCloseSignIn,
+  showSignIn
 }: LoginFormProps) {
   //assign type for parameter
+  const {handleCloseSignIn, handleShowSignUp} = useModalContext()
   const { username, password, err, handleLogin } = useLogin();
   return (
     <Modal show={showSignIn} onHide={handleCloseSignIn}>

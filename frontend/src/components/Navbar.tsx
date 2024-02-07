@@ -4,19 +4,13 @@ import ThIcon from "../assets/th.jpg";
 import Usg from "../assets/user.png";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
-import Loginform from "../features/login/components/components/Loginform";
+import Loginform from "../features/login/components/Loginform";
 import Signupform from "../features/signup/components/Signupform";
 import { Outlet } from "react-router-dom";
+import { useModalContext } from "../contexts/ModalContext";
 
 function Navbar() {
-  const [showSignIn, setShowSignIn] = useState(false);
-  const [showSignUp, setShowSignUp] = useState(false);
-  const handleCloseSignIn = () => setShowSignIn(false);
-  const handleCloseSignUp = () => setShowSignUp(false);
-
-  const handleShowSignIn = () => setShowSignIn(true);
-  const handleShowSignUp = () => setShowSignUp(true);
-
+const {handleShowSignIn, handleShowSignUp, showSignIn,} = useModalContext()
   return (
     <>
       <NavbarBs
@@ -74,9 +68,6 @@ function Navbar() {
           </Nav.Link>
         </div>
       </NavbarBs>
-      
-        <Loginform handleShowSignUp={handleShowSignUp} showSignIn={showSignIn} handleCloseSignIn={handleCloseSignIn} />
-        <Signupform handleShowSignUp={handleShowSignUp} handleCloseSignUp={handleCloseSignUp} showSignUp={showSignUp}  handleShowSignIn={handleShowSignIn}/>
       <Outlet />
       {/* children */}
     </>
