@@ -2,7 +2,7 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  collectCoverageFrom : ['controllers/**','utils/**'],
+  collectCoverageFrom : ['controllers/**','utils/**','middlewares/**'],
   verbose: true,
   watchAll: true
 };

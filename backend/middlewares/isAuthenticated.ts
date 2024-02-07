@@ -8,7 +8,10 @@ config()
 
 const isAuthenticated = (req: AuthRequest, res: Response, next: NextFunction) => {
     const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY
-    if(!ACCESS_TOKEN_KEY) throw new Error('Access token is required in env file')
+    if(!ACCESS_TOKEN_KEY) {
+        new Error('Access token is required in env file')
+        return res.status(500).send('Internal server error')
+    }
 
     const cookiesHeader = req.headers.cookie
     if(!cookiesHeader) return res.status(403).send('Cookies header are missing')
