@@ -8,5 +8,6 @@ router.use(authRoute)
 router.use(hotelRoute)
 
 router.use(isAuthenticated)
-router.get('/auth',(req,res) => res.status(200).end())
+router.get('/profile',(req,res) => res.status(200).end())
+
 export default router

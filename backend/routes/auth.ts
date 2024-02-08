@@ -52,6 +52,7 @@
 
 
 
+
 /**
  * @swagger
  * /register:
@@ -127,6 +128,83 @@
  *                   example: Internal server error
  */
 
+
+
+
+
+/**
+ * @swagger
+ * /access-token:
+ *    get:
+ *      summary: Create a new access token for user with a valid refresh token
+ *      description: Verify the refresh token. If it's valid, create a new access token and send it back via cookie.
+ *      parameters:
+ *        - in: cookie
+ *          name: refresh_token
+ *          description: The HTTP-only cookie containing the refresh token.
+ *          required: true
+ *          schema:
+ *            type: string
+ *      responses:
+ *        200:
+ *          description: OK
+ *        403:
+ *          description: missing requried cookies header
+ *          content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                     data:
+ *                       type: string
+ *                       example: Cookie headers are missing
+ */
+
+/**
+ * @swagger
+ * /profile:
+ *    get:
+ *      summary: Create a new access token for user with a valid refresh token
+ *      description: Verify the refresh token. If it's valid, create a new access token and send it back via cookie.
+ *      parameters:
+ *        - in: cookie
+ *          name: access_token
+ *          description: The HTTP-only cookie containing the access token.
+ *          required: true
+ *          schema:
+ *            type: string
+ *      responses:
+ *        200:
+ *          content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 username:
+ *                   type: string
+ *                   example: username
+ *                 role:
+ *                   type: string
+ *                   example: member 
+ *        403:
+ *          description: missing requried cookies header
+ *          content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                     data:
+ *                       type: string
+ *                       example: Cookie headers are missing
+ */
+
+
+
+
+
+
+
+
 import express from 'express'
 import { login, getNewToken, register } from '../controllers/authController'
 const router = express.Router()
@@ -134,4 +212,5 @@ const router = express.Router()
 router.post('/login',login)
 router.post('/register',register)
 router.get('/access-token',getNewToken)
+
 export default router

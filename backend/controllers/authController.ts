@@ -75,12 +75,12 @@ export const login = async (req: Request, res: Response) => {
 //@route            GET /access-token
 //@access           public
 export const getNewToken = async(req: Request,res : Response) => {
-    const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY
+    const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEYs
     const REFRESH_TOKEN_KEY = process.env.REFRESH_TOKEN_KEY
+    
     if(!ACCESS_TOKEN_KEY || !REFRESH_TOKEN_KEY) {
-      
-        new Error('Access token key and refresh token key are required in env file')
-        return res.status(500).send('Internal server error')
+        res.status(500).send('Internal server error')
+        throw new Error('Access token key and refresh token key are required in env file')
     }
 
     const cookiesHeader = req.headers.cookie
