@@ -135,7 +135,10 @@ describe('Unit test login controller', () => {
 describe('Unit test getNewToken controller', () => {
 
 
-    afterEach(() => jest.clearAllMocks())
+    afterEach(() => {
+        jest.clearAllMocks()
+        server.close()
+    })
 
     it('should handle missing cookies header', async () => {
         const response = await request(server).get('/access-token')

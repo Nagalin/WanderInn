@@ -13,7 +13,7 @@ const generateToken = (
     if (!ACCESS_TOKEN_KEY || !REFRESH_TOKEN_KEY) {
         throw new Error('Access token key and refresh token key are required in env file')
     }
-    const expirationTime = tokenType === 'ACCESS' ? '15s' : '1d';
+    const expirationTime = tokenType === 'ACCESS' ? '15d' : '1d';
     const secretKey = tokenType === 'ACCESS' ? ACCESS_TOKEN_KEY : REFRESH_TOKEN_KEY;
 
     const token = jwt.sign({ id: id }, secretKey, { expiresIn: expirationTime });

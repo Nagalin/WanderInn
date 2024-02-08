@@ -75,27 +75,30 @@ export const login = async (req: Request, res: Response) => {
 //@route            GET /access-token
 //@access           public
 export const getNewToken = async(req: Request,res : Response) => {
-    const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEYs
-    const REFRESH_TOKEN_KEY = process.env.REFRESH_TOKEN_KEY
-    
-    if(!ACCESS_TOKEN_KEY || !REFRESH_TOKEN_KEY) {
-        res.status(500).send('Internal server error')
-        throw new Error('Access token key and refresh token key are required in env file')
+    try {
+        const ACCESS_TOKEN_KEY = process.env.ACCESS_TOKEN_KEY
+        const REFRESH_TOKEN_KEY = process.env.REFRESH_TOKEN_KEY
+        
+        if(!ACCESS_TOKEN_KEY || !REFRESH_TOKEN_KEY) {
+            throw new Error('Access token key and refresh token key are required in env file')
+        }
+
+        const cookiesHeader = req.headers.cookie
+        if(!cookiesHeader) return res.status(403).send('Cookie headers are missing')
+
+        const refreshToken = extractTokenFromHeader(cookiesHeader,'refresh_token')
+
+        jwt.verify(refreshToken,REFRESH_TOKEN_KEY,(err,decoded) => {
+            if(err) return res.status(403).send('Invalid refresh token')
+
+            decoded = decoded as JwtPayload
+            console.log('rtwrwerwrwerwerwe')
+            const accessToken = generateToken(decoded.id,'ACCESS')
+            res.cookie('accessToken',accessToken,{httpOnly: true})
+        })
+        return res.status(200).end()
+    } catch (error: any) {
+        console.error(error.message);
+        res.status(500).send('Internal server error');
     }
-
-    const cookiesHeader = req.headers.cookie
-    if(!cookiesHeader) return res.status(403).send('Cookie headers are missing')
-
-    const refreshToken = extractTokenFromHeader(cookiesHeader,'refresh_token')
-
-    jwt.verify(refreshToken,REFRESH_TOKEN_KEY,(err,decoded) => {
-        if(err) return res.status(403).send('Invalid refresh token')
-
-        decoded = decoded as JwtPayload
-        console.log('rtwrwerwrwerwerwe')
-        const accessToken = generateToken(decoded.id,'ACCESS')
-        res.cookie('accessToken',accessToken,{httpOnly: true})
-    })
-    return res.status(200).end()
-
 }
