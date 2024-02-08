@@ -56,7 +56,7 @@ export const login = async (req: Request, res: Response) => {
     try {
         const user = await User.findOne({username})
         if(!user || !(await bcrypt.compare(password,user.password))) {
-            return res.status(409).send('Invalid username or password')
+            return res.status(401).send('Invalid username or password')
         }
 
         const accessToken = generateToken(user._id,"ACCESS")
@@ -64,7 +64,7 @@ export const login = async (req: Request, res: Response) => {
 
         res.cookie('access_token',accessToken,{httpOnly: true})
         res.cookie('refresh_token',refreshToken,{httpOnly: true})
-        res.status(200).send(user.role).end()
+        res.status(200).end()
     } catch (error) {
         console.error(error)
         res.status(500).send('Internal server error')

@@ -93,8 +93,6 @@ describe('Unit test login controller', () => {
             .send(payload)
 
         expect(response.status).toBe(200)
-        expect(response.text).toBe('member')
-        console.log(response.headers)
         expect(response.headers['set-cookie']).toBeDefined()
     })
 
@@ -114,7 +112,7 @@ describe('Unit test login controller', () => {
             .post('/login')
             .send(payload)
 
-        expect(response.status).toBe(409)
+        expect(response.status).toBe(401)
         expect(response.text).toBe('Invalid username or password')
     })
 
