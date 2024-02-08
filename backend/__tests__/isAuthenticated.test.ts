@@ -30,7 +30,7 @@ describe('Unit test isAuthenticated middleware', () => {
             headers: { cookie: 'accessToken=invalidToken' }
         } as Request;
         const res = {
-            status: jest.fn(() => res),
+            status: jest.fn(() => res), //return res object so it can chain with subsuequence
             send: jest.fn()
         } as unknown as Response;
         const next = jest.fn() as NextFunction;

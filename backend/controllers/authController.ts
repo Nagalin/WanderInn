@@ -62,8 +62,8 @@ export const login = async (req: Request, res: Response) => {
         const accessToken = generateToken(user._id,"ACCESS")
         const refreshToken = generateToken(user._id,"REFRESH")
 
-        res.cookie('accessToken',accessToken,{httpOnly: true})
-        res.cookie('refreshToken',refreshToken,{httpOnly: true})
+        res.cookie('access_token',accessToken,{httpOnly: true})
+        res.cookie('refresh_token',refreshToken,{httpOnly: true})
         res.status(200).send(user.role).end()
     } catch (error) {
         console.error(error)
@@ -86,7 +86,7 @@ export const getNewToken = async(req: Request,res : Response) => {
     const cookiesHeader = req.headers.cookie
     if(!cookiesHeader) return res.status(403).send('Cookie headers are missing')
 
-    const refreshToken = extractTokenFromHeader(cookiesHeader,'refreshToken')
+    const refreshToken = extractTokenFromHeader(cookiesHeader,'refresh_token')
 
     jwt.verify(refreshToken,REFRESH_TOKEN_KEY,(err,decoded) => {
         if(err) return res.status(403).send('Invalid refresh token')

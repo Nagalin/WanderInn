@@ -1,6 +1,6 @@
 const extractTokenFromHeader = (
     cookiesHeader: string,
-    tokenType: 'accessToken' | 'refreshToken') => {
+    tokenType: 'access_token' | 'refresh_token') => {
 
     let token = ''
     const cookie = cookiesHeader.split("; ")

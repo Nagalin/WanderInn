@@ -1,30 +1,56 @@
 /**
  * @swagger
- * /admin/product:
- *   put:
- *     summary: Add a new product if it not already exists
- *     description: Endpoint to add a new product with image.
+ * /login:
+ *   post:
+ *     summary: create an access token and refresh token and send via cookies with valid credentials
+ *     description: authenticate user's credentials and create new access token and refresh token
  *     requestBody:
  *       content:
- *         multipart/form-data:
+ *         application/json:
  *           schema:
  *             type: object
  *             properties:
- *               name:
+ *               username:
  *                 type: string
- *               price:
- *                 type: number
- *               image:
+ *                 example: username
+ *               password:
  *                 type: string
- *                 format: binary
+ *                 example: password
+ *              
  *     responses:
- *       '201':
- *         description: Product added successfully
- *       '409':
- *         description: Product already exists in the store
- *       '500':
- *         description: Internal server error, please try again later
+ *       200:
+ *         description: Valid user's credentials, create access token and refresh token and send via HTTP only cookie
+ *         headers:
+ *           Set-Cookie:
+ *             schema:
+ *               type: string
+ *               example: "access_token=accessToken; Path=/; HttpOnly; refresh_token=refreshToken; Path=/; HttpOnly"
+ *               description: "HTTP-only cookie for access token"
+ *          
+ *                   
+ *       401:
+ *         description: Invalid username or password
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: string
+ *                   example: Invalid username or password
+ *       500:
+ *         description: Internal server error.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: string
+ *                   example: Internal server error
  */
+
+
 
 /**
  * @swagger

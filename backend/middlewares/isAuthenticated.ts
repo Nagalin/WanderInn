@@ -16,7 +16,7 @@ const isAuthenticated = (req: AuthRequest, res: Response, next: NextFunction) =>
     const cookiesHeader = req.headers.cookie
     if(!cookiesHeader) return res.status(403).send('Cookies header are missing')
 
-    const accessToken = extractTokenFromHeader(cookiesHeader,'accessToken')
+    const accessToken = extractTokenFromHeader(cookiesHeader,'access_token')
 
     jwt.verify(accessToken,ACCESS_TOKEN_KEY,(err,decoded) =>{
         if(err) return res.status(403).send('Invalid access token')
